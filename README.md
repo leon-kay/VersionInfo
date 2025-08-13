@@ -1,69 +1,117 @@
-C# 上位机版本管理最佳实践：从混乱到优雅
-📝 痛点分析
-在上位机开发中，你是否遇到过这些版本管理噩梦？
+🚀 **轻量级 C# 版本信息管理工具**
 
-💀 一个bug修几百次，版本号爆炸
-🔄 开发版本和正式版本傻傻分不清
-📅 构建时间手动维护，容易出错
-🌐 项目各处散落着硬编码版本号
-⭐ 解决方案：一站式版本管理类
-本文设计了一套极简而强大的版本管理方案，让版本控制变得优雅高效。
+一个简单易用的 .NET 库，用于管理应用程序的版本信息，支持动态版本显示和程序集信息自动应用。
 
-🎯 核心亮点
-🔧 极简操作 - 开发者只需关注两个核心字段：
+## **✨ 特性**
 
-private const string VERSION = "7.1.2";                    // 版本号
-private const VersionType TYPE = VersionType.Dev;           // 版本类型
+- 🎯 **简洁 API**：一行代码完成版本信息配置
+- 🔧 **多版本类型**：支持 Release、Beta、Dev、Alpha 等版本类型
+- 📦 **自动应用**：版本信息自动应用到当前程序集
+- 🎨 **专业格式**：生成标准化版本号格式 `V9.1.2 [Dev] Build 2025.08.13-1545`
+- 💉 **依赖注入**：完美支持 Prism、.NET DI 等 IoC 容器
 
-⚡ 全自动化
+## **🚀 快速开始基本用法**
 
-✅ 构建时间自动生成
-✅ 版本字符串智能拼接
-✅ 无需手动维护构建信息
-📋 标准化管理
+### **安装**
 
-Release - 正式发布版本
-Hotfix - 紧急修复版本
-Dev - 开发测试版本
-🌍 全局可访问
+```csharp
+# NuGet 包管理器
+Install-Package VersionInfo
 
-静态类设计，项目任何地方都能调用
-替换传统const常量，更加灵活
-💼 适用场景
-✅ 工业自动化项目 - 现场部署需要明确版本标识
-✅ 快速迭代项目 - 频繁发版不再混乱
-✅ 团队协作开发 - 统一版本管理规范
-✅ 多环境部署 - 开发/测试/生产版本清晰区分
+# 或通过 .NET CLI
+dotnet add package VersionInfo
+```
 
-📊 版本号效果展示
-v7.1.2-Dev Build 2024-08-17-1430      // 开发版本 - 功能开发中
-v7.1.2-Hotfix Build 2024-08-17-1545   // 热修复版本 - 紧急问题修复
-v7.1.2 Build 2024-08-17-1600          // 正式版本 - 生产环境部署
+### **基本用法**
 
+```csharp
+// 注册服务
+containerRegistry.RegisterSingleton<IVersionService>(() =>
+{
+    var versionService = new VersionService();
+    versionService.UpdateVersionInfo("9.1.2", VersionType.Dev, "新增自动重连功能", "2025.08.13-1545");
+    return versionService;
+});
 
+// 使用服务
+public MainWindow(IVersionService versionService)
+{
+    var fullVersion = versionService.FullVersion; 
+    // 输出: V9.1.2 [Dev] Build 2025.08.13-1545
+}
+```
 
-🚀 实际效果
-修改前：
+### **在 WPF 中使用**
 
-// 散落在各处的硬编码
-public const string crtVersion = "v7.1.2-Hotfix Build 2024-08-17-1430";
-// 手动维护，容易出错，难以统一管理
+```csharp
+public partial class App : PrismApplication
+{
+    private const string VERSION = "9.1.2";
+    private const VersionType VERSION_TYPE = VersionType.Dev;
+    private const string BUILD_TIME = "2025.08.13-1545";
+    
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        containerRegistry.RegisterSingleton<IVersionService>(() =>
+        {
+            var service = new VersionService();
+            service.UpdateVersionInfo(VERSION, VERSION_TYPE, "功能描述", BUILD_TIME);
+            return service;
+        });
+    }
+}
+```
 
-// 散落在各处的硬编码
-public const string crtVersion = "v7.1.2-Hotfix Build 2024-08-17-1430";
-// 手动维护，容易出错，难以统一管理
+## 📋 **版本类型**
 
-修改后：
+| 类型 | 说明 |
+| --- | --- |
+| `Release` | 正式版本 |
+| `Beta` | 测试版本 |
+| `Dev` | 开发版本 |
+| `Hotfix` | 热修复版本 |
 
-// 统一管理，自动生成
-public static string CurrentVersion => VersionInfo.Current;
-// 输出：v7.1.2-Dev Build 2024-08-17-1430
+## **🎯 显示效果**
 
-// 统一管理，自动生成
-public static string CurrentVersion => VersionInfo.Current;
-// 输出：v7.1.2-Dev Build 2024-08-17-1430
+| **版本类型** | **显示格式** |
+| --- | --- |
+| Release | V9.1.2 [Release] Build 2025.08.13-1545 |
+| Dev | V9.1.2 [Dev] Build 2025.08.13-1545 |
+| Beta | V9.1.2 [Beta] Build 2025.08.13-1545 |
+| Hotfix | V9.1.2 [Hotfix] Build 2025.08.13-1545 |
 
- 
+## **🔧 适用场景**
 
-从此告别版本号混乱，让版本管理变得优雅而高效！
+✅ WPF/WinForms 桌面应用✅ 上位机软件版本管理✅ 企业内部工具✅ 需要版本追踪的应用程序
 
+## ⚠️ **已知问题**
+
+> 注意： 该工具目前为快速开发版本，存在以下已知问题：
+> 
+
+### 🔴 **主要问题**
+
+1. **程序集版本未同步**
+    - 当前只是在软件内部动态组装显示版本信息
+    - 实际的 `AssemblyVersion`、`AssemblyFileVersion` 等并未真正修改
+    - **理想方案**：应该能同时修改程序集的文件版本号
+2. **编译时间为手动维护**
+    - 当前的 Build Time 需要手动填写
+    - **理想方案**：应该在编译时自动生成真实的编译时间戳
+
+### 🟡 **计划改进**
+
+- [ ]  集成 MSBuild Target，自动修改 `AssemblyInfo`
+- [ ]  自动生成编译时间，无需手动维护
+
+### 🔄 **当前状态**
+
+该工具能满足**基础的版本信息显示需求**，适合快速项目使用。如需完整的版本管理方案，请等待后续版本更新。
+
+## **🤝 贡献**
+
+欢迎提交 Issue 和 Pull Request！特别欢迎针对上述已知问题的改进方案。
+
+⭐ 如果这个工具对你有帮助，请给个 Star 支持一下！
+
+📧 **问题反馈**：[提交 Issue](https://github.com/leon-kay/VersionInfo/issues)
