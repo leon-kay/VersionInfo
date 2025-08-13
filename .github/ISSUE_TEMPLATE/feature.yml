@@ -18,7 +18,7 @@ body:
       description: 说明提出此需求的原因和背景
       placeholder: "当前存在什么问题，为什么需要此功能"
     validations:
-      required: true
+      required: false
   - type: textarea
     id: acceptance
     attributes:
