@@ -21,21 +21,21 @@ body:
         2. 执行操作B  
         3. 观察到异常现象
     validations:
-      required: true
+      required: false
   - type: textarea
     id: expected
     attributes:
       label: 预期结果
       description: 描述期望的正确行为
     validations:
-      required: true
+      required: false
   - type: textarea
     id: actual
     attributes:
       label: 实际结果
       description: 描述实际发生的异常情况
     validations:
-      required: true
+      required: false
   - type: textarea
     id: environment
     attributes:
@@ -43,7 +43,7 @@ body:
       description: 操作系统、软件版本等相关环境
       placeholder: "操作系统：Windows 11\n软件版本：v1.2.0"
     validations:
-      required: true
+      required: false
   - type: textarea
     id: attachments
     attributes:
