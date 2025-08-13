@@ -12,19 +12,13 @@ namespace VersionInfo
         /// 更新版本信息
         /// </summary>
         /// <param name="version">版本号，如 "7.1.2"</param>
-        /// <param name="type">版本类型</param>
-        /// <param name="description">功能描述</param>
-        void UpdateVersionInfo(string version, VersionType type, string description = "");
+        void UpdateVersionInfo(string version, VersionType type, string description = "", string buildTime = "");
 
         /// <summary>
         /// 重置为默认版本
         /// </summary>
         void Reset();
 
-        /// <summary>
-        ///  自动设置当前程序集的版本信息（运行时）
-        /// </summary>
-        void ApplyToCurrentAssembly();
         #endregion
 
         #region 基本属性
