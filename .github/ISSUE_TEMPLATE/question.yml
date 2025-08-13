@@ -18,7 +18,7 @@ body:
       description: 提供相关的背景信息和使用场景
       placeholder: "正在做什么操作，在什么环境下出现的问题"
     validations:
-      required: true
+      required: false
   - type: textarea
     id: attempts
     attributes:
@@ -33,4 +33,4 @@ body:
       label: 环境信息
       description: 相关的技术环境和版本信息
     validations:
-      required: true
+      required: false
