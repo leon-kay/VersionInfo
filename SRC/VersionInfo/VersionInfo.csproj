@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>enable</ImplicitUsings>
+		 
+		<!-- 工具库配置 -->
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<FileVersion>2.0.0.0</FileVersion>
+		<AssemblyInformationalVersion>v1.0.0</AssemblyInformationalVersion>
+		<Authors>leonkay</Authors>
+		<Company>leonkay</Company>
+		<Product>版本号管理库</Product>
+		<Copyright>Copyright © 2025 leonkay. All rights reserved.</Copyright>
+	</PropertyGroup>
+
+</Project>

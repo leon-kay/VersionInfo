@@ -1,0 +1,48 @@
+name: 功能需求
+description: 提出新功能开发需求
+title: "[需求] "
+labels: ["enhancement", "需求评估"]
+body:
+  - type: textarea
+    id: requirement
+    attributes:
+      label: 需求描述
+      description: 详细描述所需功能
+      placeholder: "请明确说明需要什么功能，实现什么目标"
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: 需求背景
+      description: 说明提出此需求的原因和背景
+      placeholder: "当前存在什么问题，为什么需要此功能"
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 描述功能完成的验收条件
+      placeholder: "功能实现后应达到什么标准"
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 优先级
+      description: 评估此需求的紧急程度
+      options:
+        - 低（可延后处理）
+        - 中（正常排期）
+        - 高（尽快实现）
+        - 紧急（立即处理）
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: 补充说明
+      description: 其他相关信息或参考资料
+    validations:
+      required: false

@@ -1,0 +1,19 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Gitee 帮助中心
+    url: https://gitee.com/help
+    about: 提供Git使用教程和常见问题解答
+
+templates:
+  - name: 功能建议
+    about: 提出新的功能请求或改进意见
+    labels: ["enhancement"]
+    template: feature.yml
+  - name: Bug 反馈
+    about: 提交代码中的缺陷或异常
+    labels: ["bug"]
+    template: bug.yml
+  - name: 使用咨询
+    about: 提出问题或者寻求帮助
+    labels: ["question"]
+    template: question.yml
